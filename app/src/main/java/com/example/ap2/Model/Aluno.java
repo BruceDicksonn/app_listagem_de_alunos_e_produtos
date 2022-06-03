@@ -2,9 +2,11 @@ package com.example.ap2.Model;
 
 public class Aluno {
 
+    private int id;
     private String nome;
     private String telefone;
     private String email;
+    private String iDoCriador;
 
     public Aluno(){}
 
@@ -18,6 +20,14 @@ public class Aluno {
         return nome;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTelefone() {
         return telefone;
     }
@@ -26,8 +36,18 @@ public class Aluno {
         return email;
     }
 
+    public String getIdDoCriador() {
+        return iDoCriador;
+    }
+
+    public void setIdDoCriador(String idDoCriador) {
+        this.iDoCriador = idDoCriador;
+    }
+
     @Override
     public String toString() {
-        return nome;
+        return "\nNome: "+nome
+              +"\n\nFone: "+telefone
+              +"\n\nEmail: "+email+"\n";
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Usuario {
 
+    private String idUsuario;
     private String nome;
     private String email;
     private String senha;
@@ -14,23 +15,36 @@ public class Usuario {
     private List<String> alunoSalvos = new ArrayList<>();
 
     public Usuario(){
-
+        int id = (int)(Math.random() * 999999999 ) + 1;
+        setIdUsuario(String.valueOf(id));
     }
 
     public Usuario(String[] dados){
         this.nome = dados[0];
         this.email = dados[1];
         this.senha = dados[2];
+        int id = (int)(Math.random() * 999999999 ) + 1;
+        setIdUsuario(String.valueOf(id));
     }
 
     public Usuario(String nome, String email, String senha){
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        int id = (int)(Math.random() * 999999999 ) + 1;
+        setIdUsuario(String.valueOf(id));
     }
 
     public List<String> getProdutosSalvos() {
         return produtosSalvos;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public void setProdutosSalvos(List<String> produtosSalvos) {
@@ -81,11 +95,12 @@ public class Usuario {
 
                     String nomeDao = alunosDao.get(i).getNome();
 
-                    if (nomeDao.equals(getAlunoSalvos().get(i))) {
+                    if(alunosDao.get(i).getIdDoCriador().equals(getIdUsuario())){
 
                         listaRetornada.add(alunosDao.get(i));
 
                     }
+
                 }
 
             }

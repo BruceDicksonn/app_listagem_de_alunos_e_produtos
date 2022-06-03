@@ -61,11 +61,12 @@ public class FormularioAlunoActivity extends AppCompatActivity {
                     String fone = editTelefone.getText().toString();
 
                     Aluno alunoCriado = new Aluno(nome,fone,email);
+                    alunoCriado.setIdDoCriador(usuarioLogado.getIdUsuario());
 
                     alunoDao.salvar(alunoCriado);
 
                     // atualiza a lista de alunos cadastrados por esse usuário
-                    usuarioLogado.setAlunoSalvos(AlunoController.getAlunos());
+                    usuarioLogado.setAlunoSalvos(AlunoController.getAlunos(usuarioLogado));
 
                     //atualiza os dados de um Usuario existente no UsuariosDao
                     UsuariosDao.atualizarListaDeDadosUsuario(usuarioLogado);

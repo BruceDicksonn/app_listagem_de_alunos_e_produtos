@@ -11,6 +11,7 @@ public class AlunoDao {
 
     public void salvar(Aluno aluno){
 
+       aluno.setId(listaAlunos.size() + 1);
        listaAlunos.add(aluno);
 
     }

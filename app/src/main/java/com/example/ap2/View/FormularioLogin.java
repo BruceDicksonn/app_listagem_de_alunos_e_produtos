@@ -32,8 +32,6 @@ public class FormularioLogin extends AppCompatActivity {
     private List<Usuario> listaUsuariosCadastrados = new ArrayList<>();
     private UsuariosDao dao = new UsuariosDao();
     private Usuario usuarioLogado = new Usuario();
-    private Usuario usuarioBundle = new Usuario();
-    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,65 +43,18 @@ public class FormularioLogin extends AppCompatActivity {
         toolbar.setTitle("Login");
         setSupportActionBar(toolbar);
 
-        bundle = getIntent().getExtras();
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if(validarEmailESenha()){
 
-        if(bundle != null){
-
-            String emailBundle = (String) bundle.get("email");
-            String senhaBundle = (String) bundle.get("senha");
-
-            usuarioBundle = getUsuarioLogado(emailBundle,senhaBundle);
-
-            //usuarioLogado = getUsuarioLogado(emailBundle,senhaBundle);
-
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if(validarEmailESenha()){
-
-
-                        if(usuarioBundle.getEmail().equals(usuarioLogado.getEmail())
-                                && usuarioBundle.getSenha().equals(usuarioLogado.getSenha())) {
-
-                            usuarioLogado = usuarioBundle;
-                            abrirTelaPrincipal();
-                            limparInputs();
-
-                        } else {
-
-                            //AlunoDao.limparListaAlunos();
-
-                            alert(String.valueOf(usuarioLogado.getEmail().equals(usuarioBundle.getEmail())));
-                            abrirTelaPrincipal();
-                            limparInputs();
-
-                        }
+                    abrirTelaPrincipal();
+                    limparInputs();
 
                     }
                 }
-            });
-
-
-        } else {
-
-
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if(validarEmailESenha()){
-
-                        abrirTelaPrincipal();
-                        limparInputs();
-
-                    }
-                }
-            });
-
-        }
-
+        });
 
         cadastrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,9 +89,6 @@ public class FormularioLogin extends AppCompatActivity {
             }
         });
 
-        alert(String.valueOf(usuarioLogado.getAlunoSalvos().size()));
-
-
     }
 
     private Usuario getUsuarioLogado(String email, String senha){
@@ -159,9 +107,9 @@ public class FormularioLogin extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        listaUsuariosCadastrados = dao.getListaUsuarios();
 
-        usuarioBundle.setAlunoSalvos(AlunoController.getAlunos());
+        listaUsuariosCadastrados = dao.getListaUsuarios();
+        usuarioLogado.setAlunoSalvos(AlunoController.getAlunos(usuarioLogado));
 
         super.onResume();
     }
