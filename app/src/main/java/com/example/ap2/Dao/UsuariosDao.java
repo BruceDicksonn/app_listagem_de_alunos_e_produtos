@@ -10,7 +10,9 @@ public class UsuariosDao {
     private static List<Usuario> listaUsuariosCadastrados = new ArrayList<>();
 
     public UsuariosDao(){
-        preencherListaUsuarios();
+        if(listaUsuariosCadastrados.size() == 0){
+            preencherListaUsuarios();
+        }
     }
 
     public static List<Usuario> getListaUsuarios(){
@@ -56,7 +58,11 @@ public class UsuariosDao {
         return false;
     }
 
-    private void preencherListaUsuarios(){
+    public static void limparListaUsuariosCadastrados(){
+        listaUsuariosCadastrados.clear();
+    }
+
+    public void preencherListaUsuarios(){
         listaUsuariosCadastrados.add(new Usuario(new String[]{"Bruce Dickinson","bruce@gmail.com","123456"}));
         listaUsuariosCadastrados.add(new Usuario(new String[]{"Arlison Martins","arlison@gmail.com","123456"}));
         listaUsuariosCadastrados.add(new Usuario(new String[]{"Thcylla Sá","thcylla@gmail.com","123456"}));

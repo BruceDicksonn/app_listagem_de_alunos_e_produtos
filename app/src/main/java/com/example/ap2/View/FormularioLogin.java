@@ -67,15 +67,16 @@ public class FormularioLogin extends AppCompatActivity {
                         if(usuarioBundle.getEmail().equals(usuarioLogado.getEmail())
                                 && usuarioBundle.getSenha().equals(usuarioLogado.getSenha())) {
 
-                            abrirTelaPrincipal(usuarioBundle);
+                            usuarioLogado = usuarioBundle;
+                            abrirTelaPrincipal();
                             limparInputs();
 
                         } else {
 
-                            AlunoDao.limparListaAlunos();
+                            //AlunoDao.limparListaAlunos();
 
                             alert(String.valueOf(usuarioLogado.getEmail().equals(usuarioBundle.getEmail())));
-                            abrirTelaPrincipal(usuarioLogado);
+                            abrirTelaPrincipal();
                             limparInputs();
 
                         }
@@ -94,7 +95,7 @@ public class FormularioLogin extends AppCompatActivity {
 
                     if(validarEmailESenha()){
 
-                        abrirTelaPrincipal(usuarioLogado);
+                        abrirTelaPrincipal();
                         limparInputs();
 
                     }
@@ -137,7 +138,7 @@ public class FormularioLogin extends AppCompatActivity {
             }
         });
 
-        alert(String.valueOf(usuarioBundle.getAlunoSalvos().size()));
+        alert(String.valueOf(usuarioLogado.getAlunoSalvos().size()));
 
 
     }
@@ -170,6 +171,7 @@ public class FormularioLogin extends AppCompatActivity {
         startActivity(new Intent(this,FormularioUsuario.class));
         limparInputs();
         finish();
+
     }
 
     public boolean validarEmailESenha(){
@@ -255,12 +257,12 @@ public class FormularioLogin extends AppCompatActivity {
         senha.clearFocus();
     }
 
-    private void abrirTelaPrincipal(Usuario usuario){
+    private void abrirTelaPrincipal(){
 
         Intent intent = new Intent(this, Principal.class);
         Bundle args = new Bundle();
 
-        String n = usuario.getNome(),
+        String n = usuarioLogado.getNome(),
                e = email.getText().toString(),
                s = senha.getText().toString();
 

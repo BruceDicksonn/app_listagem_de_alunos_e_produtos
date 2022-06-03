@@ -62,7 +62,7 @@ public class ListaAlunos extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this, String.valueOf(AlunoDao.getAlunos().size()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.valueOf(UsuariosDao.getListaUsuarios().size()), Toast.LENGTH_SHORT).show();
 
     }
 

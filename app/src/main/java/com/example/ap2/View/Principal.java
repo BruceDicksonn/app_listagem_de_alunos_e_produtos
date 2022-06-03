@@ -42,7 +42,7 @@ public class Principal extends AppCompatActivity {
         //recuperando o usuario logado
         usuarioLogado = getUsuarioLogado(emailUsuario,senhaUsuario);
 
-        alert("Bem-vindo, " + nomeUsuario + " " + String.valueOf(usuarioLogado.getAlunoSalvos().size()));
+        alert("Bem-vindo, " + nomeUsuario);
 
         aluno.setOnClickListener(new View.OnClickListener() {
             @Override

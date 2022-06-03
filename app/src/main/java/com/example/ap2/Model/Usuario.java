@@ -74,7 +74,7 @@ public class Usuario {
         List<Aluno> alunosDao = AlunoDao.getAlunos();
         List<Aluno> listaRetornada = new ArrayList<>();
 
-            if(alunosDao.size() > 0) {
+            if(alunosDao.size() > 0 && getAlunoSalvos().size() > 0) {
 
 
                 for (int i = 0; i < alunosDao.size(); i++) {
