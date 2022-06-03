@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ap2</string>
+    <string name="title_activity_formulario_usuario">FormularioUsuario</string>
+    <string name="tv_cadastro"><u>Cadastre-se</u></string>
+
+</resources>

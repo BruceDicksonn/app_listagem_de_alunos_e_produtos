@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.FormularioLogin">
+
+    <include
+        layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Email"
+                android:background="@drawable/edit_text_form_login"
+                android:inputType="textEmailAddress"
+                android:maxLength="30"
+                android:padding="15dp"/>
+
+            <ImageView
+                android:id="@+id/iconEmail"
+                android:layout_width="155px"
+                android:layout_height="match_parent"
+                android:background="@drawable/icon"
+                android:padding="15dp"
+                android:src="@drawable/ic_email"
+                tools:ignore="InvalidId" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/txtSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Senha"
+                android:background="@drawable/edit_text_form_login"
+                android:inputType="textPassword"
+                android:maxLength="30"
+                android:padding="15dp"/>
+
+            <ImageView
+                android:id="@+id/iconSenha"
+                android:layout_width="155px"
+                android:layout_height="match_parent"
+                android:background="@drawable/icon"
+                android:padding="15dp"
+                android:src="@drawable/olho_fechado"
+                tools:ignore="InvalidId" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:background="@drawable/button"
+            android:text="Login"/>
+
+        <TextView
+            android:id="@+id/cadastrarUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_cadastro"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_margin="25dp"/>
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
