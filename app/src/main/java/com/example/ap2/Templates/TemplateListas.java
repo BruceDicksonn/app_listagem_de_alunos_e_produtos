@@ -1,10 +1,6 @@
 package com.example.ap2.Templates;
-
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+
 
 import com.example.ap2.Dao.UsuariosDao;
 import com.example.ap2.Model.Usuario;
@@ -25,23 +21,11 @@ public abstract class TemplateListas extends AppCompatActivity {
 
     }
 
-    protected void alert(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public abstract boolean onCreateOptionsMenu(Menu menu);
-
-    public abstract boolean onOptionsItemSelected(@NonNull MenuItem item);
-
     protected abstract void abrirTelaPrincipal();
 
     protected abstract void abrirFormularioAluno();
 
     protected abstract void abrirFormularioProduto();
-
-    protected abstract void abrirAreaAlunos();
-
-    protected abstract void abrirAreaProdutos();
 
     protected abstract void logout();
 

@@ -18,15 +18,15 @@ import com.example.ap2.Model.Aluno;
 import com.example.ap2.Dao.AlunoDao;
 import com.example.ap2.Model.Usuario;
 import com.example.ap2.R;
+import com.example.ap2.Templates.TemplateFormulario;
 
-public class FormularioUsuario extends AppCompatActivity {
+public class FormularioUsuario extends TemplateFormulario {
 
     private EditText editNome, editSenha, editEmail;
     private ImageView iconSenha;
     private Button btncadastro;
     private final UsuariosDao dao = new UsuariosDao();
     private Usuario usuarioCadastrado = new Usuario();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,8 @@ public class FormularioUsuario extends AppCompatActivity {
 
     }
 
-    private void abrirTelaPrincipal(){
+    @Override
+    protected void abrirTelaPrincipal(){
 
         Intent intent = new Intent(this, Principal.class);
         Bundle args = new Bundle();
@@ -114,14 +115,16 @@ public class FormularioUsuario extends AppCompatActivity {
 
     }
 
-    private void abrirFormularioLogin(){
+    @Override
+    protected void abrirFormularioLogin(){
 
         startActivity(new Intent(this, FormularioLogin.class));
         finish();
 
     }
 
-    private boolean verificarInputs(){
+    @Override
+    protected boolean verificarInputs(){
 
         String n = editNome.getText().toString();
         String e = editEmail.getText().toString();
@@ -148,10 +151,6 @@ public class FormularioUsuario extends AppCompatActivity {
         return true;
     }
 
-    private void alert(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -162,7 +161,8 @@ public class FormularioUsuario extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initComponents(){
+    @Override
+    protected void initComponents(){
 
         editNome = findViewById(R.id.editNomeUsuario);
         editEmail = findViewById(R.id.editEmailUsuario);
@@ -171,4 +171,31 @@ public class FormularioUsuario extends AppCompatActivity {
         iconSenha = findViewById(R.id.iconSenhaUsuario);
 
     }
+
+
+    @Override
+    protected void abrirFormularioCadastro() {
+
+    }
+
+    @Override
+    protected void abrirAreaAlunos() {
+
+    }
+
+    @Override
+    protected void abrirAreaProdutos() {
+
+    }
+
+    @Override
+    protected boolean validarEmailESenha() {
+        return false;
+    }
+
+    @Override
+    protected void limparInputs() {
+
+    }
+
 }

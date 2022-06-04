@@ -18,11 +18,12 @@ import com.example.ap2.Dao.UsuariosDao;
 import com.example.ap2.Model.Aluno;
 import com.example.ap2.Model.Usuario;
 import com.example.ap2.R;
+import com.example.ap2.Templates.TemplateListas;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaAlunos extends AppCompatActivity {
+public class ListaAlunos extends TemplateListas {
 
     private ListView listViewAlunos;
     private FloatingActionButton actionButton;
@@ -64,21 +65,8 @@ public class ListaAlunos extends AppCompatActivity {
 
     }
 
-    private Usuario getUsuarioLogado(String email, String senha){
-
-        Usuario retorno = new Usuario();
-
-        for(Usuario user : UsuariosDao.getListaUsuarios()){
-            if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
-                retorno = user;
-            }
-        }
-
-        return retorno;
-
-    }
-
-    private void abrirFormularioAluno(){
+    @Override
+    protected void abrirFormularioAluno(){
 
         Intent intent = new Intent(this,FormularioAlunoActivity.class);
         Bundle args = new Bundle();
@@ -91,7 +79,11 @@ public class ListaAlunos extends AppCompatActivity {
 
     }
 
-    private void abrirTelaPrincipal(){
+    @Override
+    protected void abrirFormularioProduto() {}
+
+    @Override
+    protected void abrirTelaPrincipal(){
 
         Intent intent = new Intent(this, Principal.class);
         Bundle args = new Bundle();
@@ -123,7 +115,8 @@ public class ListaAlunos extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void logout(){
+    @Override
+    protected void logout(){
 
         Intent intent = new Intent(this,FormularioLogin.class);
         Bundle args = new Bundle();
@@ -171,7 +164,8 @@ public class ListaAlunos extends AppCompatActivity {
         super.onResume();
     }
 
-    private void configuraLista(){
+    @Override
+    protected void configuraLista(){
         //ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dao.getAlunos());
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, usuarioLogado.toListaAluno());
@@ -179,7 +173,8 @@ public class ListaAlunos extends AppCompatActivity {
 
     }
 
-    private void initComponents(){
+    @Override
+    protected void initComponents(){
         listViewAlunos = findViewById(R.id.listViewAlunos);
         actionButton = findViewById(R.id.floatingActionButton);
     }

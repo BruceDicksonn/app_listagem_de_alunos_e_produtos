@@ -14,10 +14,11 @@ import android.widget.Toast;
 import com.example.ap2.Dao.UsuariosDao;
 import com.example.ap2.Model.Usuario;
 import com.example.ap2.R;
+import com.example.ap2.Templates.TemplatePrincipal;
 import com.example.ap2.View.ListaAlunos;
 import com.example.ap2.View.ListaProdutos;
 
-public class Principal extends AppCompatActivity {
+public class Principal extends TemplatePrincipal {
 
     private CardView aluno, produto;
     private Usuario usuarioLogado = new Usuario();
@@ -60,24 +61,6 @@ public class Principal extends AppCompatActivity {
 
     }
 
-    private Usuario getUsuarioLogado(String email, String senha){
-
-        Usuario retorno = new Usuario();
-
-        for(Usuario user : UsuariosDao.getListaUsuarios()){
-            if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
-                retorno = user;
-            }
-        }
-
-        return retorno;
-
-    }
-
-    private void alert(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
@@ -100,7 +83,8 @@ public class Principal extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void logout(){
+    @Override
+    protected void logout(){
 
         Intent intent = new Intent(this,FormularioLogin.class);
         Bundle args = new Bundle();
@@ -114,7 +98,8 @@ public class Principal extends AppCompatActivity {
 
     }
 
-    private void abrirFormularioAluno(){
+    @Override
+    protected void abrirFormularioAluno(){
         Intent intent = new Intent(this,FormularioAlunoActivity.class);
         Bundle args = new Bundle();
 
@@ -126,7 +111,8 @@ public class Principal extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void abrirFormularioProduto(){
+    @Override
+    protected void abrirFormularioProduto(){
 
         Intent intent = new Intent(this,FormularioProduto.class);
         Bundle args = new Bundle();
@@ -139,7 +125,8 @@ public class Principal extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void abrirAreaAlunos(){
+    @Override
+    protected void abrirAreaAlunos(){
 
         Intent intent = new Intent(this,ListaAlunos.class);
         Bundle args = new Bundle();
@@ -155,7 +142,8 @@ public class Principal extends AppCompatActivity {
 
     }
 
-    private void abrirAreaProdutos(){
+    @Override
+    protected void abrirAreaProdutos(){
         Intent intent = new Intent(this,ListaProdutos.class);
         Bundle args = new Bundle();
 
@@ -168,7 +156,8 @@ public class Principal extends AppCompatActivity {
 
     }
 
-    private void initComponents(){
+    @Override
+    protected void initComponents(){
         aluno = findViewById(R.id.cardAreaAluno);
         produto = findViewById(R.id.cardAreaProduto);
     }

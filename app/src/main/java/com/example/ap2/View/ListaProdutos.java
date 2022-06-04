@@ -16,10 +16,11 @@ import com.example.ap2.Dao.ProdutoDao;
 import com.example.ap2.Dao.UsuariosDao;
 import com.example.ap2.Model.Usuario;
 import com.example.ap2.R;
+import com.example.ap2.Templates.TemplateListas;
 
 import java.util.ArrayList;
 
-public class ListaProdutos extends AppCompatActivity {
+public class ListaProdutos extends TemplateListas {
 
     private ListView listViewProdutos;
     private FloatingActionButton actionButton;
@@ -62,7 +63,8 @@ public class ListaProdutos extends AppCompatActivity {
 
     }
 
-    private void abrirFormularioProduto(){
+    @Override
+    protected void abrirFormularioProduto(){
 
         Intent intent = new Intent(this,FormularioProduto.class);
         Bundle args = new Bundle();
@@ -75,21 +77,8 @@ public class ListaProdutos extends AppCompatActivity {
 
     }
 
-    private Usuario getUsuarioLogado(String email, String senha){
-
-        Usuario retorno = new Usuario();
-
-        for(Usuario user : UsuariosDao.getListaUsuarios()){
-            if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
-                retorno = user;
-            }
-        }
-
-        return retorno;
-
-    }
-
-    private void abrirTelaPrincipal(){
+    @Override
+    protected void abrirTelaPrincipal(){
 
         Intent intent = new Intent(this, Principal.class);
         Bundle args = new Bundle();
@@ -114,7 +103,11 @@ public class ListaProdutos extends AppCompatActivity {
 
     }
 
-    private void logout(){
+    @Override
+    protected void abrirFormularioAluno() {}
+
+    @Override
+    protected void logout(){
 
         Intent intent = new Intent(this,FormularioLogin.class);
         Bundle args = new Bundle();
@@ -165,12 +158,14 @@ public class ListaProdutos extends AppCompatActivity {
         configuraLista();
     }
 
-    private void configuraLista(){
+    @Override
+    protected void configuraLista(){
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, usuarioLogado.toListaProduto());
         listViewProdutos.setAdapter(adapter);
     }
 
-    private void initComponents(){
+    @Override
+    protected void initComponents(){
         listViewProdutos = findViewById(R.id.listViewProdutos);
         actionButton = findViewById(R.id.floatingActionButton);
     }

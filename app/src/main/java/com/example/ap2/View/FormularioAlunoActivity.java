@@ -17,10 +17,11 @@ import com.example.ap2.Model.Aluno;
 import com.example.ap2.Dao.AlunoDao;
 import com.example.ap2.Model.Usuario;
 import com.example.ap2.R;
+import com.example.ap2.Templates.TemplateFormulario;
 
 import java.util.ArrayList;
 
-public class FormularioAlunoActivity extends AppCompatActivity {
+public class FormularioAlunoActivity extends TemplateFormulario {
 
     private EditText editNome, editTelefone, editEmail;
     private Button btnSalvar;
@@ -82,7 +83,8 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     }
 
-    private void abrirAreaAlunos(){
+    @Override
+    protected void abrirAreaAlunos(){
 
         Intent intent = new Intent(this,ListaAlunos.class);
         Bundle args = new Bundle();
@@ -96,21 +98,8 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     }
 
-    private Usuario getUsuarioLogado(String email, String senha){
-
-        Usuario retorno = new Usuario();
-
-        for(Usuario user : UsuariosDao.getListaUsuarios()){
-            if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
-                retorno = user;
-            }
-        }
-
-        return retorno;
-
-    }
-
-    private boolean verificarInputs(){
+    @Override
+    protected boolean verificarInputs(){
 
         String n = editNome.getText().toString();
         String e = editEmail.getText().toString();
@@ -137,10 +126,6 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         return true;
     }
 
-    private void alert(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -151,10 +136,43 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initComponents(){
+    @Override
+    protected void initComponents(){
         editNome = findViewById(R.id.edit_nome);
         editTelefone = findViewById(R.id.edit_telefone);
         editEmail = findViewById(R.id.edit_email);
         btnSalvar = findViewById(R.id.btn_salvar);
     }
+
+
+    @Override
+    protected void abrirAreaProdutos() {
+
+    }
+
+    @Override
+    protected boolean validarEmailESenha() {
+        return false;
+    }
+
+    @Override
+    protected void limparInputs() {
+
+    }
+
+    @Override
+    protected void abrirTelaPrincipal() {
+
+    }
+
+    @Override
+    protected void abrirFormularioCadastro() {
+
+    }
+
+    @Override
+    protected void abrirFormularioLogin() {
+
+    }
+
 }

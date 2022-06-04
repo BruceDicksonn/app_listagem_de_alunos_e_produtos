@@ -22,8 +22,9 @@ import com.example.ap2.Dao.AlunoDao;
 import com.example.ap2.Model.Produto;
 import com.example.ap2.Model.Usuario;
 import com.example.ap2.R;
+import com.example.ap2.Templates.TemplateFormulario;
 
-public class FormularioProduto extends AppCompatActivity {
+public class FormularioProduto extends TemplateFormulario {
 
     private EditText editNome, editDescricao, editPreco;
     private Button btnSalvarProduto;
@@ -86,7 +87,8 @@ public class FormularioProduto extends AppCompatActivity {
 
     }
 
-    private void abrirAreaProdutos(){
+    @Override
+    protected void abrirAreaProdutos(){
         Intent intent = new Intent(this,ListaProdutos.class);
         Bundle args = new Bundle();
 
@@ -99,21 +101,8 @@ public class FormularioProduto extends AppCompatActivity {
 
     }
 
-    private Usuario getUsuarioLogado(String email, String senha){
-
-        Usuario retorno = new Usuario();
-
-        for(Usuario user : UsuariosDao.getListaUsuarios()){
-            if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
-                retorno = user;
-            }
-        }
-
-        return retorno;
-
-    }
-
-    private boolean verificarInputs(){
+    @Override
+    protected boolean verificarInputs(){
 
         String n = editNome.getText().toString();
         String d = editDescricao.getText().toString();
@@ -137,10 +126,6 @@ public class FormularioProduto extends AppCompatActivity {
         return true;
     }
 
-    private void alert(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -151,10 +136,42 @@ public class FormularioProduto extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initComponents(){
+    @Override
+    protected void initComponents(){
         editNome = findViewById(R.id.edit_nomeProduto);
         editDescricao = findViewById(R.id.edit_descricaoProduto);
         editPreco = findViewById(R.id.edit_precoProduto);
         btnSalvarProduto = findViewById(R.id.btn_salvarProduto);
     }
+
+    @Override
+    protected void abrirTelaPrincipal() {
+
+    }
+
+    @Override
+    protected void abrirFormularioCadastro() {
+
+    }
+
+    @Override
+    protected void abrirFormularioLogin() {
+
+    }
+
+    @Override
+    protected void abrirAreaAlunos() {
+
+    }
+
+    @Override
+    protected void limparInputs() {
+
+    }
+
+    @Override
+    protected boolean validarEmailESenha() {
+        return false;
+    }
+
 }

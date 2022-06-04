@@ -18,12 +18,13 @@ import com.example.ap2.Dao.AlunoDao;
 import com.example.ap2.Dao.UsuariosDao;
 import com.example.ap2.Model.Usuario;
 import com.example.ap2.R;
+import com.example.ap2.Templates.TemplateFormulario;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormularioLogin extends AppCompatActivity {
+public class FormularioLogin extends TemplateFormulario {
 
     private TextView cadastrarUsuario;
     private EditText email,senha;
@@ -91,20 +92,6 @@ public class FormularioLogin extends AppCompatActivity {
 
     }
 
-    private Usuario getUsuarioLogado(String email, String senha){
-
-        Usuario retorno = new Usuario();
-
-        for(Usuario user : UsuariosDao.getListaUsuarios()){
-            if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
-                retorno = user;
-            }
-        }
-
-        return retorno;
-
-    }
-
     @Override
     protected void onResume() {
 
@@ -114,7 +101,8 @@ public class FormularioLogin extends AppCompatActivity {
         super.onResume();
     }
 
-    private void abrirFormularioCadastro(){
+    @Override
+    protected void abrirFormularioCadastro(){
 
         startActivity(new Intent(this,FormularioUsuario.class));
         limparInputs();
@@ -122,7 +110,8 @@ public class FormularioLogin extends AppCompatActivity {
 
     }
 
-    public boolean validarEmailESenha(){
+    @Override
+    protected boolean validarEmailESenha(){
 
         String e = email.getText().toString();
         String s = senha.getText().toString();
@@ -199,13 +188,15 @@ public class FormularioLogin extends AppCompatActivity {
 
     }
 
-    private void limparInputs(){
+    @Override
+    protected void limparInputs(){
         email.setText("");
         senha.setText("");
         senha.clearFocus();
     }
 
-    private void abrirTelaPrincipal(){
+    @Override
+    protected void abrirTelaPrincipal(){
 
         Intent intent = new Intent(this, Principal.class);
         Bundle args = new Bundle();
@@ -231,16 +222,33 @@ public class FormularioLogin extends AppCompatActivity {
 
     }
 
-    private void alert(String msg) {
-        Toast.makeText(this, msg , Toast.LENGTH_SHORT).show();
-    }
-
-    private void initComponents(){
+    @Override
+    protected void initComponents(){
         email = findViewById(R.id.txtEmail);
         senha = findViewById(R.id.txtSenha);
         iconSenha = findViewById(R.id.iconSenha);
         btnLogin = findViewById(R.id.btnLogin);
         listaUsuariosCadastrados = dao.getListaUsuarios();
         cadastrarUsuario = findViewById(R.id.cadastrarUsuario);
+    }
+
+    @Override
+    protected boolean verificarInputs() {
+        return false;
+    }
+
+    @Override
+    protected void abrirAreaProdutos() {
+
+    }
+
+    @Override
+    protected void abrirFormularioLogin() {
+
+    }
+
+    @Override
+    protected void abrirAreaAlunos() {
+
     }
 }
