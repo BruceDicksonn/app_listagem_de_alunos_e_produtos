@@ -148,7 +148,7 @@ public class ListaAlunos extends AppCompatActivity {
                 break;
             case R.id.menu_cadastrarAluno:
                 abrirFormularioAluno();
-            break;
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

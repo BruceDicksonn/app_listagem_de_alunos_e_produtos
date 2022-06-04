@@ -1,5 +1,6 @@
 package com.example.ap2.View;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ap2.Controller.AlunoController;
+import com.example.ap2.Controller.ProdutoController;
 import com.example.ap2.Dao.ProdutoDao;
 import com.example.ap2.Dao.UsuariosDao;
 import com.example.ap2.Model.Aluno;
@@ -44,7 +47,6 @@ public class FormularioProduto extends AppCompatActivity {
 
         // pegando os dados passados pela tela principal
         Bundle bundle = getIntent().getExtras();
-        String nomeUsuario = (String) bundle.get("nome");
         String emailUsuario = (String) bundle.get("email");
         String senhaUsuario = (String) bundle.get("senha");
 
@@ -63,16 +65,37 @@ public class FormularioProduto extends AppCompatActivity {
                     String preco = editPreco.getText().toString();
 
                     Produto produtoCriado = new Produto(nome, desc , Double.parseDouble(preco));
+                    produtoCriado.setIdDoCriador(usuarioLogado.getIdUsuario());
+
                     produtoDao.salvar(produtoCriado);
+
+                    // atualiza a lista de produtos cadastrados por esse usuário
+                    usuarioLogado.setProdutosSalvos(ProdutoController.getProdutos(usuarioLogado));
+
+                    //atualiza os dados de um Usuario existente no UsuariosDao
+                    UsuariosDao.atualizarListaDeDadosUsuario(usuarioLogado);
 
                     alert("Produto salvo com sucesso!");
 
-                    finish();
+                    abrirAreaProdutos();
 
                 }
 
             }
         });
+
+    }
+
+    private void abrirAreaProdutos(){
+        Intent intent = new Intent(this,ListaProdutos.class);
+        Bundle args = new Bundle();
+
+        args.putString("email",usuarioLogado.getEmail());
+        args.putString("senha",usuarioLogado.getSenha());
+
+        intent.putExtras(args);
+
+        startActivity(intent);
 
     }
 

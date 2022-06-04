@@ -1,6 +1,7 @@
 package com.example.ap2.Model;
 
 import com.example.ap2.Dao.AlunoDao;
+import com.example.ap2.Dao.ProdutoDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,8 +94,6 @@ public class Usuario {
 
                 for (int i = 0; i < alunosDao.size(); i++) {
 
-                    String nomeDao = alunosDao.get(i).getNome();
-
                     if(alunosDao.get(i).getIdDoCriador().equals(getIdUsuario())){
 
                         listaRetornada.add(alunosDao.get(i));
@@ -104,6 +103,29 @@ public class Usuario {
                 }
 
             }
+
+
+        return new ArrayList<>(listaRetornada);
+
+    }
+
+    public List<Produto> toListaProduto(){
+
+        List<Produto> produtosDao = ProdutoDao.getProdutos();
+        List<Produto> listaRetornada = new ArrayList<>();
+
+        if(produtosDao.size() > 0 && getProdutosSalvos().size() > 0) {
+
+            for (int i = 0; i < produtosDao.size(); i++) {
+
+                if(produtosDao.get(i).getIdDoCriador().equals(getIdUsuario())){
+
+                    listaRetornada.add(produtosDao.get(i));
+
+                }
+            }
+
+        }
 
 
         return new ArrayList<>(listaRetornada);

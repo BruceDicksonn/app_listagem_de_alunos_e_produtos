@@ -23,8 +23,12 @@ public class ProdutoDao {
         return false;
     }
 
-    public List<Produto> getProdutos(){
+    public static List<Produto> getProdutos(){
         return  new ArrayList<>(listaProdutos);
+    }
+
+    public static void limparListaAlunos(){
+        listaProdutos.clear();
     }
 
 }

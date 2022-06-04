@@ -8,6 +8,7 @@ public class Produto {
     private String nome;
     private String descricao;
     private String preco;
+    private String idDoCriador;
 
     public Produto(){
 
@@ -21,6 +22,14 @@ public class Produto {
 
     public String monetary(Double value){
         return NumberFormat.getCurrencyInstance(new Locale("pt","br")).format(value);
+    }
+
+    public String getIdDoCriador() {
+        return idDoCriador;
+    }
+
+    public void setIdDoCriador(String idDoCriador) {
+        this.idDoCriador = idDoCriador;
     }
 
     public String getNome() {

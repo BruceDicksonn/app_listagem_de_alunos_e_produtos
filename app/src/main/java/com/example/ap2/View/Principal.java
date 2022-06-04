@@ -165,6 +165,7 @@ public class Principal extends AppCompatActivity {
         intent.putExtras(args);
 
         startActivity(intent);
+
     }
 
     private void initComponents(){
